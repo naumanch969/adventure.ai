@@ -1,37 +1,28 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import React from 'react'
+import { Tabs } from 'expo-router'
+import { Ionicons } from '@expo/vector-icons'
+import { Colors } from '@/constants/Colors'
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
-  return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Home',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="explore"
-        options={{
-          title: 'Explore',
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
-          ),
-        }}
-      />
-    </Tabs>
-  );
+const TabLayout = () => {
+    return (
+        <Tabs screenOptions={{
+            tabBarActiveTintColor: Colors.PRIMARY,
+            headerShown: false,
+        }} >
+            <Tabs.Screen name='mytrip' options={{
+                tabBarLabel: 'My Trip',
+                tabBarIcon: ({ color }) => <Ionicons name='location-sharp' size={24} color={color} />
+            }} />
+            <Tabs.Screen name='discover' options={{
+                tabBarLabel: 'Discover',
+                tabBarIcon: ({ color }) => <Ionicons name='globe-sharp' size={24} color={color} />
+            }} />
+            <Tabs.Screen name='profile' options={{
+                tabBarLabel: 'Profile',
+                tabBarIcon: ({ color }) => <Ionicons name='people-circle' size={24} color={color} />
+            }} />
+        </Tabs>
+    )
 }
+
+export default TabLayout
